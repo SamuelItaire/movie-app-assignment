@@ -2,7 +2,7 @@
 
 A React-based movie discovery application built with modern web technologies.
 
-## 🚀 Features
+##  Features
 
 - **Multiple Movie Endpoints**: Discover, Trending, Top Rated, and Upcoming movies
 - **Advanced Search & Filtering**: Search by title and filter by genre
@@ -13,7 +13,7 @@ A React-based movie discovery application built with modern web technologies.
 - **Responsive Design**: Works on desktop and mobile devices
 - **Caching**: Optimized performance with React Query caching
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Frontend**: React 19, React Router DOM
 - **UI Framework**: Material-UI (MUI) with custom theming
