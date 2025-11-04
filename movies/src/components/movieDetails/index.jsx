@@ -6,10 +6,11 @@ import StarRate from "@mui/icons-material/StarRate";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import React, { useState } from "react";
 import Drawer from "@mui/material/Drawer";
-import MovieReviews from "../movieReviews"
-
+import MovieReviews from "../movieReviews";
+import { Link } from "react-router-dom";
 
 const root = {
     display: "flex",
@@ -21,9 +22,57 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie }) => {  // Don't miss this!
-const [drawerOpen, setDrawerOpen] = useState(false);
+// updated the ActorList:
+const ActorList = ({ movie }) => {
+  return (
+    <Paper component="div" sx={{ mt: 2, p: 2 }}>
+      <Typography variant="h6" component="p" sx={{ mb: 1 }}>
+        Featured Cast:
+      </Typography>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+        
+        <Chip 
+          label="Lead Actor" 
+          component={Link} 
+          to="/actor/123" 
+          clickable 
+          variant="outlined"
+          color="primary"
+        />
+        <Chip 
+          label="Supporting Actress" 
+          component={Link} 
+          to="/actor/456" 
+          clickable 
+          variant="outlined"
+          color="primary"
+        />
+        <Chip 
+          label="Director" 
+          component={Link} 
+          to="/actor/789" 
+          clickable 
+          variant="outlined"
+          color="primary"
+        />
+        <Chip 
+          label="Co-Star" 
+          component={Link} 
+          to="/actor/101" 
+          clickable 
+          variant="outlined"
+          color="primary"
+        />
+      </Box>
+      <Typography variant="body2" sx={{ mt: 1, fontStyle: 'italic', color: 'text.secondary' }}>
+        Click actor names to view their details
+      </Typography>
+    </Paper>
+  );
+};
 
+const MovieDetails = ({ movie }) => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <>
@@ -48,6 +97,10 @@ const [drawerOpen, setDrawerOpen] = useState(false);
           </li>
         ))}
       </Paper>
+
+      {/* THE ACTOR LIST  */}
+      <ActorList movie={movie} />
+
       <Paper component="ul" sx={{...root}}>
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
@@ -86,8 +139,8 @@ const [drawerOpen, setDrawerOpen] = useState(false);
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
-
-      </>
+    </>
   );
 };
-export default MovieDetails ;
+
+export default MovieDetails;

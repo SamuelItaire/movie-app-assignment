@@ -11,6 +11,15 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
+import TrendingMoviesPage from "./pages/trendingMoviesPage"; 
+import TopRatedMoviesPage from "./pages/topRatedMoviesPage"; 
+import ActorPage from "./pages/actorPage";
+import { ThemeProvider } from '@mui/material/styles'; 
+import CssBaseline from '@mui/material/CssBaseline'; 
+import theme from './theme'; 
+
+
+
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,10 +35,14 @@ const queryClient = new QueryClient({
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}> {/* THEME PROVIDER */}
+        <CssBaseline /> {/* CSS BASELINE */}
       <BrowserRouter>
         <SiteHeader />
         <MoviesContextProvider>
           <Routes>
+            <Route path="/movies/top-rated" element={<TopRatedMoviesPage />} />
+            <Route path="/movies/trending" element={<TrendingMoviesPage />} />
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
             <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
             <Route path="/movies/:id" element={<MoviePage />} />
@@ -37,11 +50,13 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={ <Navigate to="/" /> } />
             <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
+            <Route path="/actor/:id" element={<ActorPage />} />
 
           </Routes>
         </MoviesContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 };
